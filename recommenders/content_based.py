@@ -35,11 +35,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
 # Importing data
-movies = pd.read_csv('resources/data/movies.csv', sep = ',')
-ratings = pd.read_csv('resources/data/ratings.csv')
+movies = pd.read_csv('resources/data/movies.csv', delimiter=',')
 movies.dropna(inplace=True)
-df = pd.read_csv('resources/data/content_based.csv')
-df.dropna(inplace=True)
+
+ratings = pd.read_csv('resources/data/ratings.csv')
+
+df = pd.read_csv('resources/data/content_based2.csv')
+#df.dropna(inplace=True)
 
 def data_preprocessing(subset_size):
     """Prepare data for use within Content filtering algorithm.
@@ -55,9 +57,6 @@ def data_preprocessing(subset_size):
         Subset of movies selected for content-based filtering.
 
     """
-    # Split genre data into individual words.
-    #movies['keyWords'] = movies['genres'].str.replace('|', ' ')
-    # Subset of the data
     movies_subset = df[:subset_size]
     return movies_subset
 
@@ -88,6 +87,8 @@ def content_model(movie_list,top_n=10):
     count_matrix = count_vec.fit_transform(data['corpus'])
     indices = pd.Series(data['title'])
     cosine_sim = cosine_similarity(count_matrix, count_matrix)
+
+    #cosine_sim = np.load('cosine_sim.npy')
     # Getting the index of the movie that matches the title
     idx_1 = indices[indices == movie_list[0]].index[0]
     idx_2 = indices[indices == movie_list[1]].index[0]
