@@ -102,8 +102,38 @@ def main():
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
         st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")
+        st.write("## Building a recommender system")
+        st.image('resources/imgs/Recommender System.png',use_column_width=True)
 
+        st.write("### Content based filtering")
+        st.write("This system recommends items based on similarities. It looks at the properties of an item and tries to look at different items that have similar properties and recommends them to the user.")   
+        st.write("To explain the mechanism in brief, the algorithm calculates the similarities between all the contents. When the user (Becky) watches a moive, the cotent(s) with the highest similarity to the movie is recommended to Becky.")
+        st.image("resources/imgs/Content.png", use_column_width=True)
+
+        st.write("### Collaborative based filtering")
+        st.write("Collaborative filtering is a method that is based on the past interactions recorded between users and items to produce new recommendations. The method does not require item meta-data like the content-based filtering. This plays a critical role in our recommender system because it lessens the computation intensity.")
+        
+        st.write("#### There are 2 collaborative filtering methods:\n")
+
+        st.write("#### Memory based: ")
+        st.write("We have investigated two memory based methods: User-user and item-item. The main characteristics of user-user and item-item approaches is that they use only information from the user-item interaction matrix and they assume no model to produce new recommendations.")
+    
+        st.write("#### Model based: ")
+        st.write("Model based collaborative approaches only rely on user-item interactions information and assume a latent model supposed to explain these interactions. For example, matrix factorisation algorithms consists in decomposing the huge and sparse user-item interaction matrix into a product of two smaller and dense matrices: a user-factor matrix (containing users representations) that multiplies a factor-item matrix (containing items representations).")
+
+        st.write("### For our app")
+        st.write("Our app makes use of the model based colaboratice filtering, using Singular Value Decomposition (SVD)")
+        st.image("resources/imgs/SVD.png", use_column_width=True)
+        st.write("The general goal of SVD is to decompose the matrix R with all missing values and multiply its components, U, Σ and V once again. As a result, there are no missing values and it is possible to recommend each user movies (items) they have not seen yet.")
+    
+        st.write("## Supplementary information")
+        st.write("We have tested six recommender models and evaluated their performance")
+        st.write("The metric used for performance, Root Mean Squared Error (RMSE), determines the average squared difference between the estimated values and the actual value.")
+        st.write("A low RMSE value indicates high model accuracy.")
+        st.image("resources/imgs/performance.png",use_column_width=True)
+
+        st.write("The SVD model was one of the best performing model. Therefore, we optimised and trains the model to implement for our recommender system.")
+    
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 

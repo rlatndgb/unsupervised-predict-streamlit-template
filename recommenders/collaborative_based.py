@@ -66,10 +66,10 @@ def prediction_item(item_id):
     a_train = load_df.build_full_trainset()
 
     predictions = []
-    for i, r in a_train.iterrows():
-        pre = (model.predict(r.userId, r.movieId))
-        pred = pre[3]
-        predictions.append(pred)
+    for ui in a_train.all_users():
+        predictions.append(model.predict(iid=item_id,uid=ui, verbose = False))
+    return predictions
+
         
     return predictions
 
