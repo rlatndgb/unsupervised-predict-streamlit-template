@@ -26,6 +26,7 @@
 
 """
 # Streamlit dependencies
+from urllib.parse import uses_netloc
 import streamlit as st
 
 # Data handling dependencies
@@ -45,7 +46,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview"]
+    page_options = ["Recommender System","Solution Overview", "Developer Team"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -53,9 +54,12 @@ def main():
     page_selection = st.sidebar.selectbox("Choose Option", page_options)
     if page_selection == "Recommender System":
         # Header contents
-        st.write('# Movie Recommender Engine')
+        #st.write('# **Watchu Player**')
+        st.markdown("""<style>.big-font {font-size:70px !important;}</style>""", unsafe_allow_html=True)
+        st.markdown('<p class="big-font">Watchu Player </p>', unsafe_allow_html=True)
         st.write('### EXPLORE Data Science Academy Unsupervised Predict')
-        st.image('resources/imgs/Image_header.png',use_column_width=True)
+        st.image('resources/imgs/watchu.png', use_column_width=True)
+        #st.image('resources/imgs/Image_header.png',use_column_width=True)
         # Recommender System algorithm selection
         sys = st.radio("Select an algorithm",
                        ('Content Based Filtering',
@@ -134,6 +138,19 @@ def main():
 
         st.write("The SVD model was one of the best performing model. Therefore, we optimised and trains the model to implement for our recommender system.")
     
+    if page_selection == "Developer Team":
+
+        st.title("Our team")
+
+
+
+        st.write("Mukondeleli Negukhula")
+        st.write("Neo Sebanze")
+        st.write("Nompumelelo Nkwanyana")
+        st.write("Sergio September")
+        st.write("Luke Sung Hyu Kim")
+
+        st.image("resources/imgs/EDSA_logo.png")
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
 
